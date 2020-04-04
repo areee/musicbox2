@@ -37,7 +37,7 @@ async function main() {
     console.error(`music-box ran into an issue getting your Gist:\n${error}`);
   }
 
-  const numArtitst = Math.min(10, json.topartists.artist.length);
+  const numArtitst = Math.min(1000, json.topartists.artist.length);
   let playsTotal = 0;
   for(let i = 0; i < numArtitst; i++) {
     playsTotal += parseInt(json.topartists.artist[i].playcount, 10);
@@ -70,7 +70,7 @@ async function main() {
       gist_id: gistID,
       files: {
         [filename]: {
-          filename: `🎵 My last week in music`,
+          filename: `🤘 My last week in music`,
           content: lines.join("\n")
         }
       }
