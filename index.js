@@ -66,6 +66,7 @@ async function main() {
   try {
     // Get original filename to update that same file
     const filename = Object.keys(gist.data.files)[0];
+    console.log(lines.join("\n"));
     await octokit.gists.update({
       gist_id: gistID,
       files: {
