@@ -37,7 +37,7 @@ async function main() {
     console.error(`music-box ran into an issue getting your Gist:\n${error}`);
   }
 
-  const numArtist = Math.min(5, json.topartists.artist.length);
+  const numArtist = Math.min(10, json.topartists.artist.length);
   let playsTotal = 0;
   for(let i = 0; i < numArtist; i++) {
     playsTotal += parseInt(json.topartists.artist[i].playcount, 10);
@@ -54,12 +54,22 @@ async function main() {
     }
     // pad short strings
     name = name.padEnd(23 + name.length - eaw.length(name));
-
+    
+    // 'plays' string in singular or plural form
+    let playsStr = '';
+    
+    if (plays === 1) {
+      playsStr = 'play';
+    }
+    else {
+      playsStr = 'plays';
+    }
+    
     lines.push([
       name,
       generateBarChart(plays * 100 / playsTotal, 17),
       `${plays}`.padStart(5),
-      'plays'
+      playsStr
     ].join(' '));
   }
 
@@ -82,7 +92,7 @@ async function main() {
 }
 
 function generateBarChart(percent, size) {
-  const syms = "░▏▎▍▌▋▊▉█";
+  const syms = "🟩▏▎▍▌▋▊▉█";
 
   const frac = Math.floor((size * 8 * percent) / 100);
   const barsFull = Math.floor(frac / 8);
