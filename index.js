@@ -14,7 +14,7 @@ const octokit = new Octokit({
   auth: `token ${githubToken}`
 });
 
-const API_BASE = 'http://ws.audioscrobbler.com/2.0/?method=user.gettopartists&format=json&period=7day&';
+const API_BASE = 'http://ws.audioscrobbler.com/2.0/?method=user.gettoptracks&format=json&period=7day&';
 
 async function main() {
   const username = user
@@ -37,16 +37,16 @@ async function main() {
     console.error(`music-box ran into an issue getting your Gist:\n${error}`);
   }
 
-  const numArtist = Math.min(10, json.topartists.artist.length);
+  const numArtist = Math.min(10, json.toptracks.track.length);
   let playsTotal = 0;
   for(let i = 0; i < numArtist; i++) {
-    playsTotal += parseInt(json.topartists.artist[i].playcount, 10);
+    playsTotal += parseInt(json.toptracks.track[i].playcount, 10);
   }
 
   const lines = [];
   for(let i = 0; i < numArtist; i++) {
-    const plays = json.topartists.artist[i].playcount;
-    let name =  json.topartists.artist[i].name.substring(0, 25);
+    const plays = json.toptracks.track[i].playcount;
+    let name =  json.toptracks.track[i].name.substring(0, 25);
     // trim off long widechars
     for(let i = 24; i >= 0; i--) {
       if(eaw.length(name) <= 26) break;
@@ -59,9 +59,9 @@ async function main() {
     let playsStr = '';
     
     if (plays == 1) {
-      playsStr = 'play';
+      playsStr = 'time';
     } else {
-      playsStr = 'plays';
+      playsStr = 'times';
     }
     
     lines.push([
@@ -80,7 +80,7 @@ async function main() {
       gist_id: gistID,
       files: {
         [filename]: {
-          filename: `🔊🎶 My last week in music`,
+          filename: `🔊🎶 My last week in music (top tracks)`,
           content: lines.join("\n")
         }
       }
