@@ -47,13 +47,16 @@ async function main() {
   for(let i = 0; i < numArtist; i++) {
     const plays = json.toptracks.track[i].playcount;
     let name =  json.toptracks.track[i].name.substring(0, 25);
+    let nameArtist =  json.toptracks.track[i].artist.name.substring(0, 25);
+    let finalName = nameArtist + ': ' + name;
     // trim off long widechars
     for(let i = 24; i >= 0; i--) {
-      if(eaw.length(name) <= 26) break;
-      name = name.substring(0, i);
+      if(eaw.length(finalName) <= 26) break;
+      finalName = finalName.substring(0, i);
     }
+    
     // pad short strings
-    name = name.padEnd(23 + name.length - eaw.length(name));
+    finalName = finalName.padEnd(23 + finalName.length - eaw.length(finalName));
     
     // 'plays' string in singular or plural form
     let playsStr = '';
@@ -65,7 +68,7 @@ async function main() {
     }
     
     lines.push([
-      name,
+      finalName,
       generateBarChart(plays * 100 / playsTotal, 17),
       `${plays}`.padStart(5),
       playsStr
