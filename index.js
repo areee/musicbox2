@@ -58,10 +58,9 @@ async function main() {
     // 'plays' string in singular or plural form
     let playsStr = '';
     
-    if (plays === 1) {
+    if (plays == 1) {
       playsStr = 'play';
-    }
-    else {
+    } else {
       playsStr = 'plays';
     }
     
