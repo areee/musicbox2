@@ -70,7 +70,7 @@ async function main() {
     lines.push([
       finalName,
       generateBarChart(plays * 100 / playsTotal, 17),
-      `${plays}`.padStart(5),
+      `${plays}`.padStart(4),
       playsStr
     ].join(' '));
   }
