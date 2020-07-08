@@ -46,7 +46,7 @@ async function main() {
   const lines = [];
   for(let i = 0; i < numArtist; i++) {
     const plays = json.toptracks.track[i].playcount;
-    let name =  json.toptracks.track[i].name.substring(0, 12);
+    let name =  json.toptracks.track[i].name.substring(0, 13);
     let nameArtist =  json.toptracks.track[i].artist.name.substring(0, 12);
     let finalName = nameArtist + ': ' + name;
     // trim off long widechars
