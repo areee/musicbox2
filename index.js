@@ -47,7 +47,7 @@ async function main() {
   for(let i = 0; i < numArtist; i++) {
     const plays = json.toptracks.track[i].playcount;
     let name =  json.toptracks.track[i].name.substring(0, 13);
-    let nameArtist =  json.toptracks.track[i].artist.name.substring(0, 12);
+    let nameArtist =  json.toptracks.track[i].artist.name.substring(0, 13);
     let finalName = nameArtist + ': ' + name;
     // trim off long widechars
     for(let i = 24; i >= 0; i--) {
@@ -56,7 +56,7 @@ async function main() {
     }
     
     // pad short strings
-    finalName = finalName.padEnd(24 + finalName.length - eaw.length(finalName));
+    finalName = finalName.padEnd(25 + finalName.length - eaw.length(finalName));
     
     // 'plays' string in singular or plural form
     let playsStr = '';
