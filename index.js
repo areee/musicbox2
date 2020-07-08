@@ -56,7 +56,7 @@ async function main() {
     }
     
     // pad short strings
-    finalName = finalName.padEnd(23 + finalName.length - eaw.length(finalName));
+    finalName = finalName.padEnd(24 + finalName.length - eaw.length(finalName));
     
     // 'plays' string in singular or plural form
     let playsStr = '';
